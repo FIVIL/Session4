@@ -27,7 +27,11 @@ namespace Session4.Models
         [StringLength(13),Phone]
         public string Phone { get; set; }
 
-        [StringLength(13),RegularExpression("")]
+        [StringLength(13)]
         public string Mobile { get; set; }
+
+
+        public Guid FacultyID { get; set; }
+        public Faculty Faculty { get; set; }
     }
 }

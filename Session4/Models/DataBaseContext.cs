@@ -16,6 +16,7 @@ namespace Session4.Models
         public DbSet<Faculty> Faculties { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Proffoser> Proffosers { get; set; }
+        public DbSet<ProffessorFaculty> ProffessorFaculties { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +28,10 @@ namespace Session4.Models
             modelBuilder.Entity<Proffoser>(e =>
             {
                 e.HasIndex(p => p.ShomarePersoneli).IsUnique();
+            });
+            modelBuilder.Entity<ProffessorFaculty>(e =>
+            {
+                e.HasKey(p => new { p.ProffoserID, p.FacultyID });
             });
         }
     }

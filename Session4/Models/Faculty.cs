@@ -21,5 +21,7 @@ namespace Session4.Models
         public ICollection<Proffoser> Proffosers { get; set; }
 
         public ICollection<Student> Students { get; set; }
+
+        public ICollection<ProffessorFaculty> ProffessorFaculties { get; set; }
     }
 }

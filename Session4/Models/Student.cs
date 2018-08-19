@@ -24,9 +24,7 @@ namespace Session4.Models
 
         public int FailedCredit { get => Enrolled - Passed; }
 
-        public StudentType Type { get; set; }
+        public StudentType? Type { get; set; }
 
-        public Guid FacultyID { get; set; }
-        public Faculty Faculty { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace Session4.Models
 
         public MratabelEmli MratabelEmli { get; set; }
 
-        public Guid FacultyID { get; set; }
-        public Faculty Faculty { get; set; }
+        public ICollection<ProffessorFaculty> ProffessorFaculties { get; set; }
+
     }
 }

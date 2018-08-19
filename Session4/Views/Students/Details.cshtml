@@ -1,0 +1,90 @@
+﻿@model Session4.Models.Student
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StudentNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Avg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Avg)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Passed)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Passed)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Enrolled)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Enrolled)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonalID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PersonalID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Faculty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Faculty.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Session4.Models;
 
 namespace Session4.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20180819094304_Last_version")]
+    partial class Last_version
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,19 +35,6 @@ namespace Session4.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("f");
-                });
-
-            modelBuilder.Entity("Session4.Models.ProffessorFaculty", b =>
-                {
-                    b.Property<Guid>("ProffoserID");
-
-                    b.Property<Guid>("FacultyID");
-
-                    b.HasKey("ProffoserID", "FacultyID");
-
-                    b.HasIndex("FacultyID");
-
-                    b.ToTable("ProffessorFaculties");
                 });
 
             modelBuilder.Entity("Session4.Models.Proffoser", b =>
@@ -130,19 +119,6 @@ namespace Session4.Migrations
                         .IsUnique();
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("Session4.Models.ProffessorFaculty", b =>
-                {
-                    b.HasOne("Session4.Models.Faculty", "Faculty")
-                        .WithMany("ProffessorFaculties")
-                        .HasForeignKey("FacultyID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Session4.Models.Proffoser", "Proffoser")
-                        .WithMany("ProffessorFaculties")
-                        .HasForeignKey("ProffoserID")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Session4.Models.Proffoser", b =>
