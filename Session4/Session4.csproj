@@ -5,15 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20180817135039_test.cs" />
-    <Compile Remove="Migrations\20180817135512_test.cs" />
-    <Compile Remove="Migrations\20180817135649_test.cs" />
-    <Compile Remove="Migrations\20180819092217_people_added.cs" />
-    <Compile Remove="Migrations\20180819100005_NtoN.cs" />
-    <Compile Remove="Migrations\20180819100209_NtoN.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />

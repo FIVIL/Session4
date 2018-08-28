@@ -35,7 +35,7 @@ namespace Session4
                 c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "My API", Version = "v1" });
             });
         }
-
+        public static Guid PublicToken = Guid.NewGuid();
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -52,6 +52,28 @@ namespace Session4
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+            //app.Map("/api", a =>
+            // {
+            //     a.Use(async (c, n) =>
+            //     {
+            //         if (c.Request.Headers["Token"].ToString() == PublicToken.ToString())
+            //         {
+            //             await n.Invoke();
+            //         }
+            //         else
+            //         {
+            //             c.Response.ContentType = "application/json";
+            //             await c.Response.WriteAsync(
+            //                 Newtonsoft.Json.JsonConvert.SerializeObject(new
+            //             {
+            //                 status = 400,
+            //                 info = "public Token required",
+            //                 Token=PublicToken.ToString()
+            //             }));
+            //         }
+            //     });
+            //     a.UseMvc();
+            // });
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

@@ -6,67 +6,62 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Session4.Models;
+using Session4.Models.SimpleModels;
 
 namespace Session4.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-     class ProffosersController : ControllerBase
+    public class FourthsController : ControllerBase
     {
         private readonly DataBaseContext _context;
 
-        public ProffosersController(DataBaseContext context)
+        public FourthsController(DataBaseContext context)
         {
             _context = context;
         }
 
-        // GET: api/Proffosers
+        // GET: api/Fourths
         [HttpGet]
-        [Produces(typeof(IList<Proffoser>))]
-        public IActionResult GetProffosers()
+        public IEnumerable<Fourth> GetFourths()
         {
-            var c=_context.Proffosers.AsNoTracking()
-                .Include(x => x.Faculty)
-                .Include(x => x.ProffessorFaculties).ThenInclude(y => y.Faculty).ThenInclude(z=>z.Proffosers)
-                .ToList();
-            return Ok(c);
-
+            return _context.Fourths;
         }
 
-        // GET: api/Proffosers/5
+        // GET: api/Fourths/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProffoser([FromRoute] Guid id)
+        public async Task<IActionResult> GetFourth([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var proffoser = await _context.Proffosers.FindAsync(id);
+            var fourth = await _context.Fourths.FindAsync(id);
 
-            if (proffoser == null)
+            if (fourth == null)
             {
                 return NotFound();
             }
 
-            return Ok(proffoser);
+            return Ok(fourth);
         }
 
-        // PUT: api/Proffosers/5
+        // PUT: api/Fourths/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProffoser([FromRoute] Guid id, [FromBody] Proffoser proffoser)
+        public async Task<IActionResult> PutFourth([FromRoute] int id, [FromBody] Fourth fourth)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != proffoser.ID)
+            if (id != fourth.ID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(proffoser).State = EntityState.Modified;
+            _context.Entry(fourth).State = EntityState.Modified;
 
             try
             {
@@ -74,7 +69,7 @@ namespace Session4.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProffoserExists(id))
+                if (!FourthExists(id))
                 {
                     return NotFound();
                 }
@@ -84,48 +79,48 @@ namespace Session4.Controllers
                 }
             }
 
-            return Ok();
+            return NoContent();
         }
 
-        // POST: api/Proffosers
+        // POST: api/Fourths
         [HttpPost]
-        public async Task<IActionResult> PostProffoser([FromBody] Proffoser proffoser)
+        public async Task<IActionResult> PostFourth([FromBody] Fourth fourth)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Proffosers.Add(proffoser);
+            _context.Fourths.Add(fourth);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProffoser", new { id = proffoser.ID }, proffoser);
+            return CreatedAtAction("GetFourth", new { id = fourth.ID }, fourth);
         }
 
-        // DELETE: api/Proffosers/5
+        // DELETE: api/Fourths/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProffoser([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteFourth([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var proffoser = await _context.Proffosers.FindAsync(id);
-            if (proffoser == null)
+            var fourth = await _context.Fourths.FindAsync(id);
+            if (fourth == null)
             {
                 return NotFound();
             }
 
-            _context.Proffosers.Remove(proffoser);
+            _context.Fourths.Remove(fourth);
             await _context.SaveChangesAsync();
 
-            return Ok(proffoser);
+            return Ok(fourth);
         }
 
-        private bool ProffoserExists(Guid id)
+        private bool FourthExists(int id)
         {
-            return _context.Proffosers.Any(e => e.ID == id);
+            return _context.Fourths.Any(e => e.ID == id);
         }
     }
 }

@@ -35,3 +35,17 @@ body {
         display: none;
     }
 }
+
+.Head{
+    position:fixed;
+    top:0px;
+    left:0px;
+    right:0px;
+    height:30px;
+    color:white;
+    background-color:rgb(100,100,100)
+}
+.Foot {
+    color: white;
+    background-color: rgb(100,100,100)
+}

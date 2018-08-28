@@ -10,8 +10,8 @@ using Session4.Models;
 namespace Session4.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20180819100336_NtoN")]
-    partial class NtoN
+    [Migration("20180828110925_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -90,6 +90,78 @@ namespace Session4.Migrations
                     b.ToTable("Proffosers");
                 });
 
+            modelBuilder.Entity("Session4.Models.SimpleModels.Fifth", b =>
+                {
+                    b.Property<int>("FirstID");
+
+                    b.Property<int>("FourthID");
+
+                    b.HasKey("FirstID", "FourthID");
+
+                    b.HasIndex("FourthID");
+
+                    b.ToTable("Fifths");
+                });
+
+            modelBuilder.Entity("Session4.Models.SimpleModels.First", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("MyProperty");
+
+                    b.Property<int?>("SeccondID");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("SeccondID");
+
+                    b.ToTable("Firsts");
+                });
+
+            modelBuilder.Entity("Session4.Models.SimpleModels.Fourth", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("MyProperty");
+
+                    b.Property<Guid?>("ThirdID");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ThirdID");
+
+                    b.ToTable("Fourths");
+                });
+
+            modelBuilder.Entity("Session4.Models.SimpleModels.Seccond", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("MyProperty");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Secconds");
+                });
+
+            modelBuilder.Entity("Session4.Models.SimpleModels.Third", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("MyProperty");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Thirds");
+                });
+
             modelBuilder.Entity("Session4.Models.Student", b =>
                 {
                     b.Property<Guid>("ID")
@@ -122,7 +194,7 @@ namespace Session4.Migrations
 
                     b.Property<int>("StudentNumber");
 
-                    b.Property<int>("Type");
+                    b.Property<int?>("Type");
 
                     b.HasKey("ID");
 
@@ -153,6 +225,33 @@ namespace Session4.Migrations
                         .WithMany("Proffosers")
                         .HasForeignKey("FacultyID")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Session4.Models.SimpleModels.Fifth", b =>
+                {
+                    b.HasOne("Session4.Models.SimpleModels.First", "First")
+                        .WithMany("Fifths")
+                        .HasForeignKey("FirstID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Session4.Models.SimpleModels.Fourth", "Fourth")
+                        .WithMany("Fifths")
+                        .HasForeignKey("FourthID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Session4.Models.SimpleModels.First", b =>
+                {
+                    b.HasOne("Session4.Models.SimpleModels.Seccond", "Seccond")
+                        .WithMany()
+                        .HasForeignKey("SeccondID");
+                });
+
+            modelBuilder.Entity("Session4.Models.SimpleModels.Fourth", b =>
+                {
+                    b.HasOne("Session4.Models.SimpleModels.Third", "Third")
+                        .WithMany("Fourths")
+                        .HasForeignKey("ThirdID");
                 });
 
             modelBuilder.Entity("Session4.Models.Student", b =>
